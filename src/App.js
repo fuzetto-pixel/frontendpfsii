@@ -3,7 +3,6 @@
 import TelaCadastrofuncao from "./telas/TelaCadastroFuncao.jsx";
 import TelaCadPessoa from "./telas/TelaCadPessoa.jsx";
 
-import TelaMenu from "./telas/TelaMenu";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 
