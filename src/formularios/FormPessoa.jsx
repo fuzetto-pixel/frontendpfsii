@@ -4,7 +4,6 @@ import InputMask from "react-input-mask";
 import { urlBase } from "../utilitarios/definicoes";
 import moment from "moment";
 
-
 export default function FormPessoa(props) {
   const [validado, setValidado] = useState(false);
   const [pessoa, setPessoa] = useState({
