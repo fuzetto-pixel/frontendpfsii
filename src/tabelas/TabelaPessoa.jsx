@@ -10,7 +10,7 @@ export default function TabelaPessoa(props) {
 
   function filtrarPessoa(e) {
     const termoBusca = e.currentTarget.value;
-    fetch(urlBase + "/pessoa", { method: "GET" })
+    fetch("https://129.146.68.51/aluno44-pfsii/pessoa", { method: "GET" })
       .then((resposta) => resposta.json())
       .then((listaPessoa) => {
         if (Array.isArray(listaPessoa)) {

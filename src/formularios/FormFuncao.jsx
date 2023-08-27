@@ -19,7 +19,7 @@ export default function FormFuncao(props) {
             //Editar
             console.log(props)
             if (!props.atualizando) {
-                fetch(urlBase + "/funcao", {
+                fetch("https://129.146.68.51/aluno44-pfsii/funcao", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -45,7 +45,7 @@ export default function FormFuncao(props) {
                     })
             }
             else {
-                fetch(urlBase + "/funcao", {
+                fetch("https://129.146.68.51/aluno44-pfsii/funcao", {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"

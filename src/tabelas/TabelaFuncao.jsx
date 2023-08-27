@@ -4,7 +4,7 @@ export default function TabelaFuncao(props) {
 
     function filtarFuncao(e) {
         const termoBusca = e.currentTarget.value;
-        fetch(urlBase + "/funcao", { method: "GET" })
+        fetch("https://129.146.68.51/aluno44-pfsii/funcao", { method: "GET" })
             .then((resposta) => {
                 return resposta.json()
             })
