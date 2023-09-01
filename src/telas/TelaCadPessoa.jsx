@@ -3,7 +3,6 @@ import FormPessoa from "../formularios/FormPessoa";
 import TabelaPessoa from "../tabelas/TabelaPessoa";
 import { useState, useEffect } from "react";
 import { Alert, Container } from "react-bootstrap";
-import { urlBase } from '../utilitarios/definicoes'
 
 export default function TelaCadPessoa(props) {
   const [exibirTabela, setExibirTabela] = useState(true);
@@ -65,9 +64,9 @@ export default function TelaCadPessoa(props) {
         setPessoa(dados)
       }
     })
-    .catch((erro) => {
-      console.error("Erro ao obter os pessoas:", erro);
-    });
+      .catch((erro) => {
+        console.error("Erro ao obter os pessoas:", erro);
+      });
   }, []);
   return (
     <Pagina>

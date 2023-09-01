@@ -7,7 +7,7 @@ export function Cabecalho(props) {
         className="shadow-lg bg-white img-fluid"
         src={Cabecalhoo}
         alt="imagem"
-        style={{ width: '100%',maxWidth: '100%'  }}
+        style={{ width: '100%', maxWidth: '100%' }}
       />
     </div>
   );

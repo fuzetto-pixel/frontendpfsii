@@ -19,7 +19,7 @@ export default function TelaCadastroFuncao(props) {
     );
     //editar 
     function prepararFuncaoParaEdicao(funcao) {
-        
+
         setAtualizando(true);
         setFuncaoEmEdicao(funcao);
         setExibirTabela(false);
@@ -63,9 +63,9 @@ export default function TelaCadastroFuncao(props) {
                 setFuncao(dados)
             }
         })
-        .catch((erro) => {
-            console.error("Erro ao obter cargos:", erro);
-          });
+            .catch((erro) => {
+                console.error("Erro ao obter cargos:", erro);
+            });
     }, []);
     return (
         <Pagina>

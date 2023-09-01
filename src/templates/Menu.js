@@ -3,7 +3,6 @@ import { LinkContainer } from "react-router-bootstrap";
 import { FaHome, FaSignOutAlt } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 
-
 export default function Menu(props) {
   return (
     <Navbar bg="success" variant="dark" expand="lg">
@@ -29,7 +28,7 @@ export default function Menu(props) {
         </Navbar.Collapse>
         <Nav >
           <div>
-            <FaSignOutAlt title="Sair" style={{ cursor: 'pointer' }} size={20} color="white"/>
+            <FaSignOutAlt title="Sair" style={{ cursor: 'pointer' }} size={20} color="white" />
           </div>
         </Nav>
       </Container>
