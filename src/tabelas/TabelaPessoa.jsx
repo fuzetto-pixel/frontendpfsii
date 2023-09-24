@@ -1,6 +1,5 @@
 import { useState } from "react"; // Importar o hook useState
 import { Button, Container, Form, Table, Row, Modal } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
 import moment from "moment";
 
 export default function TabelaPessoa(props) {
@@ -10,7 +9,7 @@ export default function TabelaPessoa(props) {
 
   function filtrarPessoa(e) {
     const termoBusca = e.currentTarget.value;
-    fetch("https://129.146.68.51/aluno44-pfsii/pessoa", { method: "GET" })
+    fetch("https://129.146.68.51/aluno49-pfsii/pessoa", { method: "GET" })
       .then((resposta) => resposta.json())
       .then((listaPessoa) => {
         if (Array.isArray(listaPessoa)) {

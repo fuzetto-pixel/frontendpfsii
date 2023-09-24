@@ -22,6 +22,10 @@ export default function Menu(props) {
                 <LinkContainer to="/funcao">
                   <NavDropdown.Item>Cargos</NavDropdown.Item>
                 </LinkContainer>
+                <NavDropdown.Divider />
+                <LinkContainer to="/evento">
+                  <NavDropdown.Item>Eventos</NavDropdown.Item>
+                </LinkContainer>
               </div>
             </NavDropdown>
           </Nav>

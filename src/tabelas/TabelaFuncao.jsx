@@ -1,10 +1,9 @@
 import { Button, Container, Table, Form, Row } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
 export default function TabelaFuncao(props) {
 
     function filtarFuncao(e) {
         const termoBusca = e.currentTarget.value;
-        fetch("https://129.146.68.51/aluno44-pfsii/funcao", { method: "GET" })
+        fetch("https://129.146.68.51/aluno49-pfsii/funcao", { method: "GET" })
             .then((resposta) => {
                 return resposta.json()
             })
