@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Button, Container, Table, Form, Row } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
 import moment from "moment";
 import EventCalendar from "./calendarioEvento";
 import { FaTimes } from "react-icons/fa";
@@ -31,7 +30,7 @@ export default function TabelaEvento(props) {
 
   function filtarEvento(e) {
     const termoBusca = e.currentTarget.value;
-    fetch(urlBase + "/evento", { method: "GET" })
+    fetch("https://129.146.68.51/aluno49-pfsii/evento", { method: "GET" })
       .then((resposta) => {
         return resposta.json();
       })
