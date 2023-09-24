@@ -1,0 +1,70 @@
+/*aqui é do filtro de pesquisa do financeiro*/
+.custom-date-picker {
+    border-radius: 15px; /* Adicione a borda redonda */
+    border: 1px solid #227c01; /* Adicione uma borda para o DatePicker */
+    padding: 5px; /* Adicione algum espaço interno para melhor aparência */
+  }
+
+  /* Estilo para a data inicial selecionada */
+.react-datepicker__day--selected.start-date-picker {
+    background-color: green !important;
+  }
+  
+  /* Estilo para a data final selecionada */
+.react-datepicker__day--selected.end-date-picker {
+    background-color: green !important;
+  }
+  
+  /* Estilo para os dias intermediários entre a data inicial e final selecionada */
+.react-datepicker__day--in-range {
+    background-color: green !important;
+  }
+
+  .calendario-container {
+    height: 600px   ; /* Defina a altura desejada para o calendário */
+    width: 500px;
+
+  }
+
+  .event-container {
+    padding: 8px; /* Adicione um espaçamento interno para o evento */
+    color: #ffffff; /* Cor do texto do evento */
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .event-time {
+    font-size: 8px; /* Tamanho da fonte do horário do evento */
+    font-family: Arial, Helvetica, sans-serif;
+    
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Defina um valor alto para que o modal fique acima do restante do conteúdo */
+  }
+  
+  .modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 9999; /* Defina o mesmo valor aqui para garantir que o conteúdo do modal fique acima do fundo */
+  }
+ 
+
+
+/*mudar cor da seta do slide*/
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(100%); /* Isso inverte a cor da seta para a cor oposta */
+}
