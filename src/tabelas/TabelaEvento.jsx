@@ -13,9 +13,7 @@ export default function TabelaEvento(props) {
   const [mostrarCalendario, setMostrarCalendario] = useState(false); // Estado para controlar a exibição do calendário
 
   useEffect(() => {
-    fetch(urlBase + "/evento", {
-      method: "GET",
-    })
+    fetch("https://129.146.68.51/aluno49-pfsii/evento", { method: "GET" })
       .then((resposta) => resposta.json())
       .then((dados) => {
         if (Array.isArray(dados)) {

@@ -33,7 +33,7 @@ export default function TelaCadPessoa(props) {
   }
 
   function apagarPessoa(pessoa) {
-    fetch("https://129.146.68.51/aluno44-pfsii/pessoa", {
+    fetch("https://129.146.68.51/aluno49-pfsii/pessoa", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(pessoa),
@@ -55,7 +55,7 @@ export default function TelaCadPessoa(props) {
   }
 
   useEffect(() => {
-    fetch("https://129.146.68.51/aluno44-pfsii/pessoa", {
+    fetch("https://129.146.68.51/aluno49-pfsii/pessoa", {
       method: "GET"
     }).then((resposta) => {
       return resposta.json();

@@ -50,7 +50,7 @@ export default function TelaCadastroFuncao(props) {
             });
     }
     useEffect(() => {
-        fetch("https://129.146.68.51/aluno44-pfsii/funcao", {
+        fetch("https://129.146.68.51/aluno49-pfsii/funcao", {
             method: "GET"
         }).then((resposta) => {
             return resposta.json();

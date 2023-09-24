@@ -54,7 +54,7 @@ export default function FormPessoa(props) {
           });
       } else {
         debugger;
-        fetch("https://129.146.68.51/aluno44-pfsii/pessoa", {
+        fetch("https://129.146.68.51/aluno49-pfsii/pessoa", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json"
@@ -89,7 +89,7 @@ export default function FormPessoa(props) {
   }
 
   useEffect(() => {
-    fetch("https://129.146.68.51/aluno44-pfsii/funcao", {
+    fetch("https://129.146.68.51/aluno49-pfsii/funcao", {
       method: "GET"
     })
       .then((resposta) => resposta.json())
