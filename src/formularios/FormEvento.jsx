@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { Form, Row, Col, Button, InputGroup } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
 import moment from "moment";
-
-
 
 export default function FormEvento(props) {
   const [validado, setValidado] = useState(false);
@@ -51,8 +48,7 @@ export default function FormEvento(props) {
       };
 
       if (!props.atualizando) {
-        fetch(urlBase + "/evento", {
-          method: "POST",
+        fetch("https://129.146.68.51/aluno49-pfsii/evento", {method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
@@ -73,7 +69,7 @@ export default function FormEvento(props) {
             window.alert("Erro ao executar a requisição: " + erro.message);
           });
       } else {
-        fetch(urlBase + "/evento", {
+        fetch("https://129.146.68.51/aluno49-pfsii/evento", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

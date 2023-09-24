@@ -89,7 +89,7 @@ export default function FormPessoa(props) {
   }
 
   useEffect(() => {
-    fetch("https://129.146.68.51/aluno49-pfsii/funcao", {
+    fetch("https://129.146.68.51/aluno49-pfsii/pessoa", {
       method: "GET"
     })
       .then((resposta) => resposta.json())

@@ -3,7 +3,6 @@ import FormEvento from "../formularios/FormEvento";
 import TabelaEvento from "../tabelas/TabelaEvento";
 import { useState, useEffect } from "react";
 import { Alert, Container } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
 
 export default function TelaCadastroEvento(props) {
   const [exibirTabela, setExibirTabela] = useState(true);
@@ -32,7 +31,7 @@ export default function TelaCadastroEvento(props) {
   }
 
   function apagarEvento(evento) {
-    fetch(urlBase + "/evento", {
+    fetch("https://129.146.68.51/aluno49-pfsii/evento", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(evento),
@@ -54,7 +53,7 @@ export default function TelaCadastroEvento(props) {
   }
 
   useEffect(() => {
-    fetch(urlBase + "/evento", {
+    fetch("https://129.146.68.51/aluno49-pfsii/evento", {
       method: "GET",
     })
       .then((resposta) => {
