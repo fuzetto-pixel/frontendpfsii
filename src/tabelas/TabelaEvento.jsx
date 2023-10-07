@@ -61,10 +61,7 @@ export default function TabelaEvento(props) {
         Header: "Responsável",
         accessor: "Responsavel",
       },
-      {
-        Header: "cpf_responsavel",
-        accessor: "cpf_responsavel",
-      },
+  
       {
         Header: "Público",
         accessor: "PublicoAlvo",
