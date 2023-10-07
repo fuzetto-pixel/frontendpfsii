@@ -158,7 +158,7 @@ export default function FormEvento(props) {
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
-        <Col className="col-8 mb-3">
+        <Col className="col-4 mb-3">
           <Form.Group>
             <Form.Label>Cpf do responsável:</Form.Label>
             <Form.Control

@@ -130,7 +130,7 @@ export default function FormPessoa(props) {
 
           <Col className="col-3">
             <Form.Group >
-              <Form.Label>Nome:</Form.Label>
+              <Form.Label>Nom:</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Nome completo..."
