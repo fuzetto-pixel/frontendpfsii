@@ -62,6 +62,10 @@ export default function TabelaEvento(props) {
         accessor: "Responsavel",
       },
       {
+        Header: "cpf_responsavel",
+        accessor: "cpf_responsavel",
+      },
+      {
         Header: "Público",
         accessor: "PublicoAlvo",
       },
@@ -213,11 +217,11 @@ export default function TabelaEvento(props) {
             {page.map((row) => {
               prepareRow(row); // Preparando a linha para ser renderizada
               return (
-                // Renderiza a linha com suas células
+                // Renderiza a linha 
                 <tr {...row.getRowProps()}>
-                  {/* Mapeando cada célula da linha */}
+                  {/* Mapeando cada linha */}
                   {row.cells.map((cell) => {
-                    return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>; // Renderiza o conteúdo da célula
+                    return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>; // Renderiza o conteúdo
                   })}
                 </tr>
               );

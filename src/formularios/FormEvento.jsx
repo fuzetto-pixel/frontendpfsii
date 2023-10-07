@@ -156,6 +156,22 @@ export default function FormEvento(props) {
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
+        <Col className="col-4 mb-3">
+          <Form.Group>
+            <Form.Label>Cpf do responsável:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Informe o cpf do responsável pelo evento..."
+              value={evento.cpf_responsavel}
+              id="cpf_responsavel"
+              onChange={manipularMudanca}
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+              Digite o cpf do responsável!
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Col>
         <Col className="col-3 mb-3">
           <Form.Group>
             <Form.Label>Público Alvo:</Form.Label>

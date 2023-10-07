@@ -65,7 +65,7 @@ export default function TabelaPessoa(props) {
               
               <th>Nome</th>
               <th>Data Nasc.</th>
-              <th>Cargo</th>
+              {/* <th>Cargo</th> */}
               <th>Email</th>
               <th>Celular</th>
               <th>Editar/Excluir/Visualizar</th>
@@ -77,7 +77,7 @@ export default function TabelaPessoa(props) {
                
                 <td>{pessoa.nome}</td>
                 <td>{moment(pessoa.dataNasc).format("DD/MM/YYYY")}</td>
-                <td>{pessoa.funcaomembro}</td>
+                {/* <td>{pessoa.funcaomembro}</td> */}
                 <td>{pessoa.email}</td>
                 <td>{pessoa.celular}</td>
                 <td>
