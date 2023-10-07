@@ -6,6 +6,25 @@ export default function FormEvento(props) {
   const [validado, setValidado] = useState(false);
   const [evento, setEvento] = useState(props.evento);
 
+  const [funcoes, setFuncoes] = useState([]);
+
+  useEffect(() => {
+    fetch("https://129.146.68.51/aluno49-pfsii/pessoa", {
+      method: "GET"
+    })
+      .then((resposta) => resposta.json())
+      .then((dados) => {
+        if (Array.isArray(dados)) {
+          setFuncoes(dados);
+        }
+      })
+      .catch((erro) => {
+        console.error("Erro ao obter funções:", erro);
+      });
+  }, []);
+
+  
+
   function manipularMudanca(e) {
     const elemForm = e.currentTarget;
     const id = elemForm.id;

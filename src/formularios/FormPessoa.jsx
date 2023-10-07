@@ -100,7 +100,23 @@ export default function FormPessoa(props) {
       .catch((erro) => {
         console.error("Erro ao obter funções:", erro);
       });
+  
+    fetch("https://129.146.68.51/aluno49-pfsii/pessoa", {
+      method: "GET"
+    })
+      .then((resposta) => resposta.json())
+      .then((dados) => {
+        if (Array.isArray(dados)) {
+          // Mapeie os dados para extrair os CPFs
+          const cpfs = dados.map((pessoa) => pessoa.cpf);
+          setFuncoes(cpfs); // Substitua completamente os dados existentes em funcoes
+        }
+      })
+      .catch((erro) => {
+        console.error("Erro ao obter CPFs das pessoas:", erro);
+      });
   }, []);
+  
 
   return (
     <>
