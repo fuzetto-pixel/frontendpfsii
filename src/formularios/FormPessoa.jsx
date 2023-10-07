@@ -11,6 +11,7 @@ export default function FormPessoa(props) {
   });
   const [funcoes, setFuncoes] = useState([]);
 
+
   function manipularMudanca(e) {
     const elemForm = e.currentTarget;
     const { id, value } = elemForm;
@@ -101,6 +102,24 @@ export default function FormPessoa(props) {
         console.error("Erro ao obter funções:", erro);
       });
   }, []);
+
+  useEffect(() => {
+    // Simulando uma chamada a uma API para obter os dados das pessoas
+    fetch("https://129.146.68.51/aluno49-pfsii/pessoa")
+      .then((response) => response.json())
+      .then((data) => {
+        // Armazena os dados das pessoas no estado
+        setPessoa(data);
+      })
+      .catch((error) => {
+        console.error('Erro ao obter dados das pessoas:', error);
+      });
+  }, []);
+
+  const handleChange = (event) => {
+    // Atualiza o estado com o CPF selecionado
+    setCpfResponsavel(event.target.value);
+  };
   
 
   return (
