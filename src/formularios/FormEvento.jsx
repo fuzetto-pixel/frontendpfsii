@@ -158,22 +158,26 @@ export default function FormEvento(props) {
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
-        <Col className="col-4 mb-3">
-          <Form.Group>
-            <Form.Label>Cpf do responsável:</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Informe o cpf do responsável pelo evento..."
-              value={evento.cpf_responsavel}
-              id="cpf_responsavel"
-              onChange={manipularMudanca}
-              required
-            />
-            <Form.Control.Feedback type="invalid">
-              Digite o cpf do responsável!
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Col>
+      <Col className="col-3 mb-3">
+            <div >
+              <label htmlFor="inputEvento" className="form-label">
+                Cpf do responsável:
+              </label>
+              <Form.Select
+                id="cpf_responsavel"
+                className="form-control"
+                onChange={manipularMudanca}
+                required
+              >
+                <option value="">Selecione</option>
+                {funcoes.map((pessoa) => (
+                  <option key={pessoa.cpf} value={pessoa.cpf} >
+                    {pessoa.cpf}
+                  </option>
+                ))}
+              </Form.Select>
+            </div>
+          </Col>
         <Col className="col-3 mb-3">
           <Form.Group>
             <Form.Label>Público Alvo:</Form.Label>
