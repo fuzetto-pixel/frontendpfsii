@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Row, Col, Button, InputGroup } from "react-bootstrap";
 import moment from "moment";
 
 export default function FormEvento(props) {
   const [validado, setValidado] = useState(false);
   const [evento, setEvento] = useState(props.evento);
+  const [cpfResponsavel, setCpfResponsavel] = useState("");
+
+  const handleChange = (event) => {
+    setCpfResponsavel(event.target.value);
+  };
 
   function manipularMudanca(e) {
     const elemForm = e.currentTarget;
@@ -106,7 +111,6 @@ export default function FormEvento(props) {
       noValidate
       validated={validado}
       onSubmit={manipulaSubmissao}
-
     >
 
       <Row className="justify-content-center">
@@ -161,22 +165,18 @@ export default function FormEvento(props) {
         </Col>
         <Col className="col-2 mb-4">
           <div>
-            <label htmlFor="inputFuncao" className="form-label">
-              Função:
-            </label>
-            <Form.Select
-              id="cpf_responsavel"
-              className="form-control"
-              onChange={manipularMudanca}
-              required
-            >
-              <option value="">Selecione</option>
-              {pessoas.map((pessoa) => (
-                <option key={pessoa.cpf} value={pessoa.cpf}>
-                  {pessoa.cpf}
-                </option>
-              ))}
-            </Form.Select>
+            <Form.Group controlId="cpfResponsavel">
+              <Form.Label>CPF do Responsável:</Form.Label>
+              <Form.Select onChange={handleChange} value={cpfResponsavel}>
+                <option value="">Selecione</option>
+                {/* Substitua o seguinte mapeamento pela lista real de CPFs dos responsáveis */}
+                {cpfResponsavel.map((cpf) => (
+                  <option key={cpf} value={cpf}>
+                    {cpf}
+                  </option>
+                ))}
+              </Form.Select>
+            </Form.Group>
           </div>
         </Col>
         <Col className="col-3 mb-3">

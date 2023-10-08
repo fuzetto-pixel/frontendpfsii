@@ -10,6 +10,7 @@ export default function FormPessoa(props) {
     dataNasc: moment(props.pessoa.dataNasc).format("YYYY-MM-DD"),
   });
   const [funcoes, setFuncoes] = useState([]);
+  const [cpfResponsavel, setCpfResponsavel] = useState([]);
 
 
   function manipularMudanca(e) {
@@ -108,19 +109,15 @@ export default function FormPessoa(props) {
     fetch("https://129.146.68.51/aluno49-pfsii/pessoa")
       .then((response) => response.json())
       .then((data) => {
-        // Armazena os dados das pessoas no estado
+        // Armazena os dados das pessoas e os CPFs no estado
         setPessoa(data);
+        const cpfs = data.map((pessoa) => pessoa.cpf);
+        setCpfResponsavel(cpfs);
       })
       .catch((error) => {
         console.error('Erro ao obter dados das pessoas:', error);
       });
   }, []);
-
-  const handleChange = (event) => {
-    // Atualiza o estado com o CPF selecionado
-    setCpfResponsavel(event.target.value);
-  };
-  
 
   return (
     <>
