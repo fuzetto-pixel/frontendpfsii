@@ -113,7 +113,7 @@ export default function FormEvento(props) {
         }
       })
       .catch((erro) => {
-        console.error("Erro ao obter funções:", erro);
+        console.error("Erro ao obter cpf:", erro);
       });
   }, []);
 
@@ -188,7 +188,7 @@ export default function FormEvento(props) {
                 required
               >
                 <option value="">Selecione</option>
-                {cpfResponsaveis.map((pessoa) => (
+                {props.cpfResponsaveis.map((pessoa) => (
                   <option key={pessoa.cpf} value={pessoa.cpf} >
                     {pessoa.cpf}
                   </option>
