@@ -10,8 +10,7 @@ export default function FormPessoa(props) {
     dataNasc: moment(props.pessoa.dataNasc).format("YYYY-MM-DD"),
   });
   const [funcoes, setFuncoes] = useState([]);
-  const [cpfResponsavel, setCpfResponsavel] = useState([]);
-
+ 
 
   function manipularMudanca(e) {
     const elemForm = e.currentTarget;
@@ -104,20 +103,6 @@ export default function FormPessoa(props) {
       });
   }, []);
 
-  useEffect(() => {
-    // Simulando uma chamada a uma API para obter os dados das pessoas
-    fetch("https://129.146.68.51/aluno49-pfsii/pessoa")
-      .then((response) => response.json())
-      .then((data) => {
-        // Armazena os dados das pessoas e os CPFs no estado
-        setPessoa(data);
-        const cpfs = data.map((pessoa) => pessoa.cpf);
-        setCpfResponsavel(cpfs);
-      })
-      .catch((error) => {
-        console.error('Erro ao obter dados das pessoas:', error);
-      });
-  }, []);
 
   return (
     <>
@@ -147,7 +132,7 @@ export default function FormPessoa(props) {
 
           <Col className="col-3">
             <Form.Group >
-              <Form.Label>Nom:</Form.Label>
+              <Form.Label>Nome:</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Nome completo..."

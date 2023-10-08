@@ -5,11 +5,8 @@ import moment from "moment";
 export default function FormEvento(props) {
   const [validado, setValidado] = useState(false);
   const [evento, setEvento] = useState(props.evento);
-  const [cpfResponsavel, setCpfResponsavel] = useState("");
 
-  const handleChange = (event) => {
-    setCpfResponsavel(event.target.value);
-  };
+  const [cpfResponsaveis, setcpfResponsaveis] = useState([]);
 
   function manipularMudanca(e) {
     const elemForm = e.currentTarget;
@@ -55,8 +52,7 @@ export default function FormEvento(props) {
       };
 
       if (!props.atualizando) {
-        fetch("https://129.146.68.51/aluno49-pfsii/evento", {
-          method: "POST",
+        fetch("https://129.146.68.51/aluno49-pfsii/evento", {method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
@@ -105,14 +101,31 @@ export default function FormEvento(props) {
       setValidado(true);
     }
   }
+
+  useEffect(() => {
+    fetch("https://129.146.68.51/aluno49-pfsii/pessoa", {
+      method: "GET"
+    })
+      .then((resposta) => resposta.json())
+      .then((dados) => {
+        if (Array.isArray(dados)) {
+          setcpfResponsaveis(dados);
+        }
+      })
+      .catch((erro) => {
+        console.error("Erro ao obter funções:", erro);
+      });
+  }, []);
+
   return (
     <Form
       className="shadow-lg p-3 mt-4 bg-white rounded;"
       noValidate
       validated={validado}
       onSubmit={manipulaSubmissao}
+      
     >
-
+      
       <Row className="justify-content-center">
         <Col className="d-none ">
           <Form.Group>
@@ -164,21 +177,25 @@ export default function FormEvento(props) {
           </Form.Group>
         </Col>
         <Col className="col-2 mb-4">
-          <div>
-            <Form.Group controlId="cpfResponsavel">
-              <Form.Label>CPF do Responsável:</Form.Label>
-              <Form.Select onChange={handleChange} value={cpfResponsavel}>
+            <div >
+              <label htmlFor="inputEvento" className="form-label">
+                Cpf Responsável:
+              </label>
+              <Form.Select
+                id="cpfResponsavel"
+                className="form-control"
+                onChange={manipularMudanca}
+                required
+              >
                 <option value="">Selecione</option>
-                {/* Substitua o seguinte mapeamento pela lista real de CPFs dos responsáveis */}
-                {props.listapessoa.map((pessoa) => (
-                  <option key={pessoa.cpf} value={pessoa.cpf}>
+                {cpfResponsaveis.map((pessoa) => (
+                  <option key={pessoa.cpf} value={pessoa.cpf} >
                     {pessoa.cpf}
                   </option>
                 ))}
               </Form.Select>
-            </Form.Group>
-          </div>
-        </Col>
+            </div>
+          </Col>
         <Col className="col-3 mb-3">
           <Form.Group>
             <Form.Label>Público Alvo:</Form.Label>
@@ -242,44 +259,44 @@ export default function FormEvento(props) {
           </Form.Group>
         </Col>
         <Col className="col-3 mb-3">
-          <Form.Group>
-            <Form.Label>Status:</Form.Label>
-            <Form.Control
-              as="select"
-              value={evento.StatusType}
-              id="StatusType"
-              onChange={manipularMudanca}
-              required
-            >
-              <option value="">Selecione o status...</option>
-              <option value="Confirmado">Confirmado</option>
-              <option value="Pendente">Pendente</option>
-              <option value="Cancelado">Cancelado</option>
-            </Form.Control>
-            <Form.Control.Feedback type="invalid">
-              Selecione o status do evento!
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Col>
-
-        <Col className="mt-5 col-11">
-          <InputGroup className="descricao">
-            <InputGroup.Text>Descrição</InputGroup.Text>
-            <Form.Control
-              required
-              value={evento.Descricao}
-              onChange={manipularMudanca}
-              id="Descricao"
-              as="textarea"
-              placeholder="Insira aqui as descrições do evento cadastrado..."
-              style={{ height: '100px' }}
-
-            />
-            <Form.Control.Feedback>Ok !</Form.Control.Feedback>
-            <Form.Control.Feedback type="invalid">Por favor Insira uma Descrição!</Form.Control.Feedback>
-          </InputGroup>
-        </Col>
-
+        <Form.Group>
+          <Form.Label>Status:</Form.Label>
+          <Form.Control
+            as="select"
+            value={evento.StatusType}
+            id="StatusType"
+            onChange={manipularMudanca}
+            required
+          >
+            <option value="">Selecione o status...</option>
+            <option value="Confirmado">Confirmado</option>
+            <option value="Pendente">Pendente</option>
+            <option value="Cancelado">Cancelado</option>
+          </Form.Control>
+          <Form.Control.Feedback type="invalid">
+            Selecione o status do evento!
+          </Form.Control.Feedback>
+        </Form.Group>
+      </Col>
+        
+          <Col className="mt-5 col-11">
+            <InputGroup className="descricao">
+              <InputGroup.Text>Descrição</InputGroup.Text>
+              <Form.Control
+                required
+                value={evento.Descricao}
+                onChange={manipularMudanca}
+                id="Descricao"
+                as="textarea"
+                placeholder="Insira aqui as descrições do evento cadastrado..."
+                style={{ height: '100px' }}
+                
+              />
+              <Form.Control.Feedback>Ok !</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">Por favor Insira uma Descrição!</Form.Control.Feedback>
+            </InputGroup>
+          </Col>
+        
         <div className="d-flex justify-content-end my-3">
           <Button
             style={{ marginRight: "5px" }}
@@ -295,7 +312,7 @@ export default function FormEvento(props) {
           <Button className="mt-5" type="submit" variant="btn btn-outline-success">
             {props.atualizando ? "Atualizar" : "Cadastrar"}
           </Button>{" "}
-
+          
         </div>
       </Row>
     </Form>
