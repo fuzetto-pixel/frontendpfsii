@@ -6,7 +6,7 @@ export default function FormEvento(props) {
   const [validado, setValidado] = useState(false);
   const [evento, setEvento] = useState(props.evento);
 
-  const [cpfResponsaveis, setcpfResponsaveis] = useState([]);
+  const [Responsaveis, setResponsaveis] = useState([]);
 
   function manipularMudanca(e) {
     const elemForm = e.currentTarget;
@@ -109,7 +109,7 @@ export default function FormEvento(props) {
       .then((resposta) => resposta.json())
       .then((dados) => {
         if (Array.isArray(dados)) {
-          setcpfResponsaveis(dados);
+          setResponsaveis(dados);
         }
       })
       .catch((erro) => {
@@ -188,9 +188,9 @@ export default function FormEvento(props) {
                 required
               >
                 <option value="">Selecione</option>
-                {cpfResponsaveis.map((pessoa) => (
-                  <option key={pessoa.cpf} value={pessoa.cpf} >
-                    {pessoa.cpf}
+                {Responsaveis.map((pessoa) => (
+                  <option key={pessoa.nome} value={pessoa.nome} >
+                    {pessoa.nome}
                   </option>
                 ))}
               </Form.Select>
