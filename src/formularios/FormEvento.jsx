@@ -188,7 +188,7 @@ export default function FormEvento(props) {
                 required
               >
                 <option value="">Selecione</option>
-                {props.cpfResponsaveis.map((pessoa) => (
+                {cpfResponsaveis.map((pessoa) => (
                   <option key={pessoa.cpf} value={pessoa.cpf} >
                     {pessoa.cpf}
                   </option>
