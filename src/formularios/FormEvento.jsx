@@ -25,8 +25,6 @@ export default function FormEvento(props) {
       const {
         idEvento,
         nomeEvento,
-        Responsavel,
-        cpf_responsavel,
         PublicoAlvo,
         DataEvento,
         HoraEvento,
@@ -41,8 +39,6 @@ export default function FormEvento(props) {
       const eventoParaEnviar = {
         idEvento,
         nomeEvento,
-        Responsavel,
-        cpf_responsavel,
         PublicoAlvo,
         DataEvento: dataFormatada,
         HoraEvento,
@@ -160,29 +156,13 @@ export default function FormEvento(props) {
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
-        <Col className="col-4 mb-3">
-          <Form.Group>
-            <Form.Label>Responsável:</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Informe o nome do responsável pelo evento..."
-              value={evento.Responsavel}
-              id="Responsavel"
-              onChange={manipularMudanca}
-              required
-            />
-            <Form.Control.Feedback type="invalid">
-              Digite o nome do responsável!
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Col>
         <Col className="col-2 mb-4">
             <div >
               <label htmlFor="inputEvento" className="form-label">
                 Cpf Responsável:
               </label>
               <Form.Select
-                id="cpfResponsavel"
+                id="Responsavel"
                 className="form-control"
                 onChange={manipularMudanca}
                 required
