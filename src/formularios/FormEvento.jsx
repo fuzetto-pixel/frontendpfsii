@@ -170,9 +170,9 @@ export default function FormEvento(props) {
               <Form.Select onChange={handleChange} value={cpfResponsavel}>
                 <option value="">Selecione</option>
                 {/* Substitua o seguinte mapeamento pela lista real de CPFs dos responsáveis */}
-                {cpfResponsavel.map((cpf) => (
-                  <option key={cpf} value={cpf}>
-                    {cpf}
+                {props.listapessoa.map((pessoa) => (
+                  <option key={pessoa.cpf} value={pessoa.cpf}>
+                    {pessoa.cpf}
                   </option>
                 ))}
               </Form.Select>
