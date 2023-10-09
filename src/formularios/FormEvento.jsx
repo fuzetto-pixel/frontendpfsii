@@ -159,7 +159,7 @@ export default function FormEvento(props) {
         <Col className="col-2 mb-4">
             <div >
               <label htmlFor="inputEvento" className="form-label">
-                Cpf Responsável:
+                Responsável:
               </label>
               <Form.Select
                 id="Responsavel"
