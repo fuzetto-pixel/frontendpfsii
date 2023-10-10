@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Container, Table, Row, Modal } from "react-bootstrap";
 import moment from "moment";
 import BarraDePesquisa from '../BarraDeBusca/BarraDePesquisa'; // Importar o componente BarraDePesquisa
@@ -6,31 +6,31 @@ import BarraDePesquisa from '../BarraDeBusca/BarraDePesquisa'; // Importar o com
 export default function TabelaPessoa(props) {
   const [showModal, setShowModal] = useState(false);
   const [pessoaVisualizada, setPessoaVisualizada] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [pessoas, setPessoas] = useState([]); // Estado para armazenar os dados da API
 
-  const [searchTerm, setSearchTerm] = useState(''); // Adicione o estado searchTerm
+  useEffect(() => {
+    // Função para buscar os dados da API
+    const fetchData = () => {
+      fetch("https://129.146.68.51/aluno49-pfsii/pessoa", { method: "GET" })
+        .then((resposta) => resposta.json())
+        .then((listaPessoa) => {
+          if (Array.isArray(listaPessoa)) {
+            setPessoas(listaPessoa);
+          }
+        });
+    };
+
+    fetchData(); // Chama a função de busca quando o componente é montado.
+  }, []);
 
   const handleSearch = (termoDePesquisa) => {
-    setSearchTerm(termoDePesquisa); // Atualize o estado searchTerm com o termo de pesquisa
+    setSearchTerm(termoDePesquisa);
   };
 
-  const pessoasFiltradas = props.listaPessoa.filter((pessoa) =>
+  const pessoasFiltradas = pessoas.filter((pessoa) =>
     pessoa.nome.toLowerCase().includes(searchTerm.toLowerCase())
-  ); // Filtrar pessoas com base em searchTerm
-
-
-
-  function filtrarPessoa(termoBusca) { // Modifique a função filtrarPessoa para receber o termo de busca diretamente
-    fetch("https://129.146.68.51/aluno49-pfsii/pessoa", { method: "GET" })
-      .then((resposta) => resposta.json())
-      .then((listaPessoa) => {
-        if (Array.isArray(listaPessoa)) {
-          const resultadoBusca = listaPessoa.filter((pessoa) =>
-            pessoa.nome.toLowerCase().includes(termoBusca.toLowerCase())
-          );
-          props.setPessoa(resultadoBusca);
-        }
-      });
-  }
+  );
 
   const VisualizarPessoaModal = ({ pessoa, showModal, handleCloseModal }) => {
     return (
@@ -59,7 +59,7 @@ export default function TabelaPessoa(props) {
     <Container>
       <Container>
         <Row className="col-4">
-        <BarraDePesquisa onSearch={handleSearch} />
+          <BarraDePesquisa onSearch={handleSearch} />
         </Row>
       </Container>
       {/* Tabela de pessoas */}
@@ -67,7 +67,7 @@ export default function TabelaPessoa(props) {
         <Table striped bordered hover className="shadow-lg">
           <thead>
             <tr>
-              
+
               <th>Nome</th>
               <th>Data Nasc.</th>
               {/* <th>Cargo</th> */}
@@ -79,7 +79,7 @@ export default function TabelaPessoa(props) {
           <tbody>
             {pessoasFiltradas.map((pessoa) => (
               <tr key={pessoa.cpf}>
-               
+
                 <td>{pessoa.nome}</td>
                 <td>{moment(pessoa.dataNasc).format("DD/MM/YYYY")}</td>
                 {/* <td>{pessoa.funcaomembro}</td> */}
