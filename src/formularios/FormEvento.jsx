@@ -111,7 +111,7 @@ export default function FormEvento(props) {
         }
       })
       .catch((erro) => {
-        console.error("Erro ao obter cpf:", erro);
+        console.error("Erro ao obter Responsável:", erro);
       });
   }, []);
 

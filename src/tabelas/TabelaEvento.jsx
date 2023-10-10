@@ -5,6 +5,7 @@ import EventCalendar from "./calendarioEvento";
 import { FaTimes } from "react-icons/fa";
 import { useTable, usePagination } from "react-table";
 import Pagination from "react-bootstrap/Pagination";
+import BarraDePesquisa from '../BarraDeBusca/BarraDePesquisa';
 
 
 export default function TabelaEvento(props) {

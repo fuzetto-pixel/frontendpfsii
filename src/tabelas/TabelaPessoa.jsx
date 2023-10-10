@@ -1,14 +1,13 @@
-import { useState } from "react"; // Importar o hook useState
-import { Button, Container, Form, Table, Row, Modal } from "react-bootstrap";
+import { useState } from "react";
+import { Button, Container, Table, Row, Modal } from "react-bootstrap";
 import moment from "moment";
+import BarraDePesquisa from '../BarraDePesquisa/BarraDePesquisa'; // Importar o componente BarraDePesquisa
 
 export default function TabelaPessoa(props) {
+  const [showModal, setShowModal] = useState(false);
+  const [pessoaVisualizada, setPessoaVisualizada] = useState(null);
 
-  const [showModal, setShowModal] = useState(false); // Estado para controlar a exibição do modal de visualização
-  const [pessoaVisualizada, setPessoaVisualizada] = useState(null); // Estado para armazenar a pessoa que será visualizada
-
-  function filtrarPessoa(e) {
-    const termoBusca = e.currentTarget.value;
+  function filtrarPessoa(termoBusca) { // Modifique a função filtrarPessoa para receber o termo de busca diretamente
     fetch("https://129.146.68.51/aluno49-pfsii/pessoa", { method: "GET" })
       .then((resposta) => resposta.json())
       .then((listaPessoa) => {
@@ -48,13 +47,7 @@ export default function TabelaPessoa(props) {
     <Container>
       <Container>
         <Row className="col-4">
-          <Form.Control
-            className="my-2"
-            type="text"
-            placeholder="Pesquisar..."
-            id="termoBusca"
-            onChange={filtrarPessoa}
-          />
+        <BarraDePesquisa onSearch={filtrarPessoa} />
         </Row>
       </Container>
       {/* Tabela de pessoas */}
