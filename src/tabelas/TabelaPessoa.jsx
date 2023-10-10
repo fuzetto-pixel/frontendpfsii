@@ -77,7 +77,7 @@ export default function TabelaPessoa(props) {
             </tr>
           </thead>
           <tbody>
-            {props.listaPessoa?.map((pessoa) => (
+            {pessoasFiltradas.map((pessoa) => (
               <tr key={pessoa.cpf}>
                
                 <td>{pessoa.nome}</td>
