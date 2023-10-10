@@ -1,36 +1,24 @@
-import { useState, useEffect } from "react";
-import { Button, Container, Table, Row, Modal } from "react-bootstrap";
+import { useState } from "react"; // Importar o hook useState
+import { Button, Container, Form, Table, Row, Modal } from "react-bootstrap";
 import moment from "moment";
-import BarraDePesquisa from '../BarraDeBusca/BarraDePesquisa'; // Importar o componente BarraDePesquisa
 
 export default function TabelaPessoa(props) {
-  const [showModal, setShowModal] = useState(false);
-  const [pessoaVisualizada, setPessoaVisualizada] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [pessoas, setPessoas] = useState([]); // Estado para armazenar os dados da API
 
-  useEffect(() => {
-    // Função para buscar os dados da API
-    const fetchData = () => {
-      fetch("https://129.146.68.51/aluno49-pfsii/pessoa", { method: "GET" })
-        .then((resposta) => resposta.json())
-        .then((listaPessoa) => {
-          if (Array.isArray(listaPessoa)) {
-            setPessoas(listaPessoa);
-          }
-        });
-    };
+  const [showModal, setShowModal] = useState(false); // Estado para controlar a exibição do modal de visualização
+  const [pessoaVisualizada, setPessoaVisualizada] = useState(null); // Estado para armazenar a pessoa que será visualizada
 
-    fetchData(); // Chama a função de busca quando o componente é montado.
-  }, []);
-
-  const handleSearch = (termoDePesquisa) => {
-    setSearchTerm(termoDePesquisa);
-  };
-
-  const pessoasFiltradas = pessoas.filter((pessoa) =>
-    pessoa.nome.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  function filtrarPessoa(termoBusca) {
+    fetch("https://129.146.68.51/aluno49-pfsii/pessoa", { method: "GET" })
+      .then((resposta) => resposta.json())
+      .then((listaPessoa) => {
+        if (Array.isArray(listaPessoa)) {
+          const resultadoBusca = listaPessoa.filter((pessoa) =>
+            pessoa.nome.toLowerCase().includes(termoBusca.toLowerCase())
+          );
+          props.setPessoa(resultadoBusca);
+        }
+      });
+  }
 
   const VisualizarPessoaModal = ({ pessoa, showModal, handleCloseModal }) => {
     return (
@@ -58,16 +46,14 @@ export default function TabelaPessoa(props) {
   return (
     <Container>
       <Container>
-        <Row className="col-4">
-          <BarraDePesquisa onSearch={handleSearch} />
-        </Row>
+      <BarraDePesquisa onSearch={filtrarPessoa} />
       </Container>
       {/* Tabela de pessoas */}
       <div className="table-responsive">
         <Table striped bordered hover className="shadow-lg">
           <thead>
             <tr>
-
+              
               <th>Nome</th>
               <th>Data Nasc.</th>
               {/* <th>Cargo</th> */}
@@ -77,9 +63,9 @@ export default function TabelaPessoa(props) {
             </tr>
           </thead>
           <tbody>
-            {pessoasFiltradas.map((pessoa) => (
+            {props.listaPessoa?.map((pessoa) => (
               <tr key={pessoa.cpf}>
-
+               
                 <td>{pessoa.nome}</td>
                 <td>{moment(pessoa.dataNasc).format("DD/MM/YYYY")}</td>
                 {/* <td>{pessoa.funcaomembro}</td> */}
