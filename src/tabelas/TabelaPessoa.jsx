@@ -59,7 +59,7 @@ export default function TabelaPessoa(props) {
     <Container>
       <Container>
         <Row className="col-4">
-        <BarraDePesquisa onSearch={filtrarPessoa} />
+        <BarraDePesquisa onSearch={handleSearch} />
         </Row>
       </Container>
       {/* Tabela de pessoas */}
