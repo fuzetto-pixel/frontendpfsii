@@ -7,6 +7,18 @@ export default function TabelaPessoa(props) {
   const [showModal, setShowModal] = useState(false);
   const [pessoaVisualizada, setPessoaVisualizada] = useState(null);
 
+  const [searchTerm, setSearchTerm] = useState(''); // Adicione o estado searchTerm
+
+  const handleSearch = (termoDePesquisa) => {
+    setSearchTerm(termoDePesquisa); // Atualize o estado searchTerm com o termo de pesquisa
+  };
+
+  const pessoasFiltradas = props.listaPessoa.filter((pessoa) =>
+    pessoa.nome.toLowerCase().includes(searchTerm.toLowerCase())
+  ); // Filtrar pessoas com base em searchTerm
+
+
+
   function filtrarPessoa(termoBusca) { // Modifique a função filtrarPessoa para receber o termo de busca diretamente
     fetch("https://129.146.68.51/aluno49-pfsii/pessoa", { method: "GET" })
       .then((resposta) => resposta.json())
