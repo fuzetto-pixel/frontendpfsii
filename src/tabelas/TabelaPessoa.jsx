@@ -7,6 +7,7 @@ export default function TabelaPessoa(props) {
 
   const [showModal, setShowModal] = useState(false); // Estado para controlar a exibição do modal de visualização
   const [pessoaVisualizada, setPessoaVisualizada] = useState(null); // Estado para armazenar a pessoa que será visualizada
+  
 
   function filtrarPessoa(termoBusca) {
     fetch("https://129.146.68.51/aluno49-pfsii/pessoa", { method: "GET" })
