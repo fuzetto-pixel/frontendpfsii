@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Container, Table, Row, Modal } from "react-bootstrap";
 import moment from "moment";
-import BarraDePesquisa from '../BarraDePesquisa/BarraDePesquisa'; // Importar o componente BarraDePesquisa
+import BarraDePesquisa from '../BarraDeBusca/BarraDePesquisa'; // Importar o componente BarraDePesquisa
 
 export default function TabelaPessoa(props) {
   const [showModal, setShowModal] = useState(false);
