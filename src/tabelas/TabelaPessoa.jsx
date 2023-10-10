@@ -1,6 +1,7 @@
 import { useState } from "react"; // Importar o hook useState
 import { Button, Container, Form, Table, Row, Modal } from "react-bootstrap";
 import moment from "moment";
+import BarraDePesquisa from '../BarraDeBusca/BarraDePesquisa'; // Importe o componente BarraDePesquisa
 
 export default function TabelaPessoa(props) {
 
