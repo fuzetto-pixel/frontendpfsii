@@ -28,9 +28,9 @@ export default function TabelaPessoa(props) {
     setSearchTerm(termoDePesquisa);
   };
 
-  const pessoasFiltradas = pessoas.filter((pessoa) =>
-    pessoa.nome.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // const pessoasFiltradas = pessoas.filter((pessoa) =>
+  //   pessoa.nome.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
 
   const VisualizarPessoaModal = ({ pessoa, showModal, handleCloseModal }) => {
     return (
