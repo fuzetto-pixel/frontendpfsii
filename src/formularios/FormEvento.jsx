@@ -24,7 +24,6 @@ export default function FormEvento(props) {
         idEvento,
         nomeEvento,
         PublicoAlvo,
-        Responsavel,
         DataEvento,
         HoraEvento,
         Localizacao,
@@ -102,8 +101,7 @@ export default function FormEvento(props) {
       className="shadow-lg p-3 mt-4 bg-white rounded;"
       noValidate
       validated={validado}
-      onSubmit={manipulaSubmissao}
-      
+      onSubmit={manipulaSubmissao}  
     >
       
       <Row className="justify-content-center">
