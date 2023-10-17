@@ -1,4 +1,4 @@
-import { useState } from "react"; // Importar o hook useState
+import { useState, useEffect } from "react"; // Importar o hook useState
 import { Button, Container, Form, Table, Row, Modal } from "react-bootstrap";
 import moment from "moment";
 import BarraDePesquisa from '../BarraDeBusca/BarraDePesquisa'; // Importe o componente BarraDePesquisa
@@ -7,6 +7,8 @@ export default function TabelaPessoa(props) {
 
   const [showModal, setShowModal] = useState(false); // Estado para controlar a exibição do modal de visualização
   const [pessoaVisualizada, setPessoaVisualizada] = useState(null); // Estado para armazenar a pessoa que será visualizada
+  const [pessoas, setPessoas] = useState([]); // Definir o estado para pessoas
+  const [searchTerm, setSearchTerm] = useState(''); // Definir o estado para o termo de pesquisa
 
 
   useEffect(() => {
