@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Row, Col, Button, InputGroup } from "react-bootstrap";
 import moment from "moment";
 
 export default function FormEvento(props) {
   const [validado, setValidado] = useState(false);
   const [evento, setEvento] = useState(props.evento);
-
 
   function manipularMudanca(e) {
     const elemForm = e.currentTarget;
@@ -25,6 +24,7 @@ export default function FormEvento(props) {
         idEvento,
         nomeEvento,
         PublicoAlvo,
+        Responsavel,
         DataEvento,
         HoraEvento,
         Localizacao,
@@ -97,6 +97,21 @@ export default function FormEvento(props) {
     }
   }
 
+  useEffect(() => {
+    fetch("https://129.146.68.51/aluno49-pfsii/pessoa", {
+      method: "GET"
+    })
+      .then((resposta) => resposta.json())
+      .then((dados) => {
+        if (Array.isArray(dados)) {
+          setResponsaveis(dados);
+        }
+      })
+      .catch((erro) => {
+        console.error("Erro ao obter Responsável:", erro);
+      });
+  }, []);
+
   return (
     <Form
       className="shadow-lg p-3 mt-4 bg-white rounded;"
@@ -140,7 +155,6 @@ export default function FormEvento(props) {
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
-
         <Col className="col-3 mb-3">
           <Form.Group>
             <Form.Label>Público Alvo:</Form.Label>
