@@ -14,8 +14,6 @@ export default function TelaCadastroEvento(props) {
 
     idEvento: 0,
     nomeEvento: "",
-    Responsavel: "",
-    cpf_responsavel: "",
     PublicoAlvo: "",
     DataEvento: "",
     HoraEvento: "",

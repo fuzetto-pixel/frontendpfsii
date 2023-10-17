@@ -26,7 +26,6 @@ export default function FormEvento(props) {
         idEvento,
         nomeEvento,
         PublicoAlvo,
-        Responsavel,
         DataEvento,
         HoraEvento,
         Localizacao,
@@ -41,7 +40,6 @@ export default function FormEvento(props) {
         idEvento,
         nomeEvento,
         PublicoAlvo,
-        Responsavel,
         DataEvento: dataFormatada,
         HoraEvento,
         Localizacao,
@@ -158,26 +156,7 @@ export default function FormEvento(props) {
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
-        <Col className="col-2 mb-4">
-            <div >
-              <label htmlFor="inputEvento" className="form-label">
-                Responsável:
-              </label>
-              <Form.Select
-                id="Responsavel"
-                className="form-control"
-                onChange={manipularMudanca}
-                required
-              >
-                <option value="">Selecione</option>
-                {Responsaveis.map((pessoa) => (
-                  <option key={pessoa.nome} value={pessoa.nome} >
-                    {pessoa.nome}
-                  </option>
-                ))}
-              </Form.Select>
-            </div>
-          </Col>
+
         <Col className="col-3 mb-3">
           <Form.Group>
             <Form.Label>Público Alvo:</Form.Label>
