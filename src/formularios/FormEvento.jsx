@@ -97,21 +97,6 @@ export default function FormEvento(props) {
     }
   }
 
-  useEffect(() => {
-    fetch("https://129.146.68.51/aluno49-pfsii/pessoa", {
-      method: "GET"
-    })
-      .then((resposta) => resposta.json())
-      .then((dados) => {
-        if (Array.isArray(dados)) {
-          setResponsaveis(dados);
-        }
-      })
-      .catch((erro) => {
-        console.error("Erro ao obter Responsável:", erro);
-      });
-  }, []);
-
   return (
     <Form
       className="shadow-lg p-3 mt-4 bg-white rounded;"
