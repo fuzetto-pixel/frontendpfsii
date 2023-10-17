@@ -2,6 +2,7 @@ import TelaCadastrofuncao from "./telas/TelaCadastroFuncao.jsx";
 import TelaCadPessoa from "./telas/TelaCadPessoa.jsx";
 import TelaCadastroevento from "./telas/TelaCadastroEvento.jsx";
 import TelaMenu from "./telas/TelaMenu";
+import Tela404 from "./telas/Tela404";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path="/pessoas" element={<TelaCadPessoa />} />
           <Route path="/evento" element={<TelaCadastroevento/>}/>         
           <Route path="/" element={<TelaMenu />} />
+          <Route path="*" element={<Tela404 />} />
         </Routes>
 
       </BrowserRouter>
