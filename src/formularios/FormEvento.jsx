@@ -97,8 +97,6 @@ export default function FormEvento(props) {
     }
   }
 
- 
-
   return (
     <Form
       className="shadow-lg p-3 mt-4 bg-white rounded;"
