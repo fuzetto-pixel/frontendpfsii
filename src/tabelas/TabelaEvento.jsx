@@ -58,7 +58,6 @@ export default function TabelaEvento(props) {
         Header: "Evento",
         accessor: "nomeEvento",
       },
-
       {
         Header: "Público",
         accessor: "PublicoAlvo",
