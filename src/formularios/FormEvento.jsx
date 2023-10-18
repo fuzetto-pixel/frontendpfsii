@@ -5,9 +5,16 @@ import moment from "moment";
 export default function FormEvento(props) {
   const [validado, setValidado] = useState(false);
   const [evento, setEvento] = useState(props.evento);
-  const [Responsaveis, setResponsaveis] = useState([]);
+
 
   const [responsaveisSelecionados, setResponsaveisSelecionados] = useState([]);
+
+  function manipularMudanca(e) {
+    const elemForm = e.currentTarget;
+    const id = elemForm.id;
+    const valor = elemForm.value;
+    setEvento({ ...evento, [id]: valor });
+  }
 
   function adicionarFuncao() {
     const selectedRoleId = document.getElementById("cpf").value;
@@ -27,13 +34,6 @@ export default function FormEvento(props) {
     setResponsaveisSelecionados(updatedRoles);
   }
 
-  function removerFuncao(cpf) {
-    const updatedRoles = evento.Responsaveis.filter((role) => role.cpf !== cpf);
-    setEvento({
-      ...evento,
-      Responsaveis: updatedRoles
-    });
-  }
 
   function manipulaSubmissao(event) {
     event.preventDefault();
