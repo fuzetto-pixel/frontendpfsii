@@ -5,9 +5,7 @@ import moment from "moment";
 export default function FormEvento(props) {
   const [validado, setValidado] = useState(false);
   const [evento, setEvento] = useState(props.evento);
-
-
-  const [responsaveisSelecionados, setResponsaveisSelecionados] = useState([]);
+  const [Responsaveis, setResponsaveis] = useState([]);
 
   function manipularMudanca(e) {
     const elemForm = e.currentTarget;
@@ -16,24 +14,26 @@ export default function FormEvento(props) {
     setEvento({ ...evento, [id]: valor });
   }
 
-  function adicionarFuncao() {
+  function adicionarResponsaveis() {
     const selectedRoleId = document.getElementById("cpf").value;
-    const selectedRole = Responsaveis.find((pessoa) => pessoa.cpf === parseInt(selectedRoleId, 10));
+    const selectedRole = Responsaveis.find((pessoa) => pessoa.cpf === selectedRoleId);
 
-    if (
-      selectedRole &&
-      !responsaveisSelecionados.some((role) => role.cpf === selectedRole.cpf)
-    ) {
-      const novosResponsaveis = [...responsaveisSelecionados, selectedRole];
-      setResponsaveisSelecionados(novosResponsaveis);
+    if (selectedRole && !evento.Responsaveis.some((role) => role.cpf === selectedRole.cpf)) {
+      const novoResponsaveis = [...evento.Responsaveis, { cpf: selectedRole.cpf, nome: selectedRole.nome }];
+      setEvento({
+        ...evento,
+        Responsaveis: novoResponsaveis
+      });
     }
   }
 
-  function removerFuncao(cpf) {
-    const updatedRoles = responsaveisSelecionados.filter((role) => role.cpf !== cpf);
-    setResponsaveisSelecionados(updatedRoles);
+  function removerResponsaveis(cpf) {
+    const updatedRoles = evento.Responsaveis.filter((role) => role.cpf !== cpf);
+    setEvento({
+      ...evento,
+      Responsaveis: updatedRoles
+    });
   }
-
 
   function manipulaSubmissao(event) {
     event.preventDefault();
@@ -162,7 +162,7 @@ export default function FormEvento(props) {
         </Col>
         <Col className="col-4 mb-3">
           <Form.Group>
-            <Form.Label>Nome Evento:</Form.Label>
+            <Form.Label>Evento:</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ex: Palestra, Workshop..."
@@ -239,31 +239,41 @@ export default function FormEvento(props) {
           </Form.Group>
         </Col>
         <Col className="col-5 mb-4">
-          <Form.Select id="cpf" className="form-control" required>
-            <option value="">Selecione</option>
-            {Responsaveis.map((pessoa) => (
-              <option key={pessoa.cpf} value={pessoa.cpf}>
-                {pessoa.nome}
-              </option>
-            ))}
-          </Form.Select>
-          <Button variant="btn btn-outline-primary mt-2" type="button" onClick={adicionarFuncao}>
-            Adicionar Responsavel
-          </Button>
-          <div className="mt-3">
-            {responsaveisSelecionados.map((role) => (
-              <div key={role.cpf}>
-                {role.nome}{" "}
-                <Button
-                  className="mt-3"
-                  variant="btn btn-outline-danger btn-sm"
-                  type="button"
-                  onClick={() => removerFuncao(role.cpf)}
-                >
-                  Remover
-                </Button>
-              </div>
-            ))}
+          <div>
+            <label htmlFor="inputEvento" className="form-label">
+              Responsaveis:
+            </label>
+            <Form.Select id="cpf" className="form-control" required onChange={manipularMudanca}>
+              <option value="">Selecione</option>
+              {Responsaveis && Responsaveis.map((pessoa) => (
+                <option key={pessoa.cpf} value={pessoa.cpf}>
+                  {pessoa.nome}
+                </option>
+              ))}
+            </Form.Select>
+            <Button
+              variant="btn btn-outline-primary mt-2"
+              type="button"
+              onClick={adicionarResponsaveis}
+            >
+              Adicionar Responsavel
+            </Button>
+            <div className="mt-3">
+              {evento.Responsaveis && evento.Responsaveis.map((role) => (
+                <div key={role.cpf}>
+                  {role.nome}{" "}
+                  <Button
+                    className="mt-3"
+                    variant="btn btn-outline-danger btn-sm"
+                    type="button"
+                    onClick={() => removerResponsaveis(role.cpf)}
+                  >
+                    Remover
+                  </Button>
+                </div>
+              ))}
+
+            </div>
           </div>
         </Col>
 
