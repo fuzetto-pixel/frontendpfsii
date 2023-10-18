@@ -120,7 +120,7 @@ export default function FormEvento(props) {
   }
 
   useEffect(() => {
-    fetch("https://129.146.68.51/aluno49-pfsii/pessoa", {
+    fetch("https://129.146.68.51/aluno49-pfsii/evento", {
       method: "GET"
     })
       .then((resposta) => resposta.json())
@@ -130,7 +130,7 @@ export default function FormEvento(props) {
         }
       })
       .catch((erro) => {
-        console.error("Erro ao obter funções:", erro);
+        console.error("Erro ao obter responsável:", erro);
       });
   }, []);
 
@@ -162,7 +162,7 @@ export default function FormEvento(props) {
         </Col>
         <Col className="col-4 mb-3">
           <Form.Group>
-            <Form.Label>Evento:</Form.Label>
+            <Form.Label>Evento1:</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ex: Palestra, Workshop..."
