@@ -6,6 +6,8 @@ export default function FormEvento(props) {
   const [validado, setValidado] = useState(false);
   const [evento, setEvento] = useState(props.evento);
 
+  const [Responsaveis, setResponsaveis] = useState([]);
+
   function manipularMudanca(e) {
     const elemForm = e.currentTarget;
     const id = elemForm.id;
@@ -116,6 +118,21 @@ export default function FormEvento(props) {
       setValidado(true);
     }
   }
+
+  useEffect(() => {
+    fetch("https://129.146.68.51/aluno49-pfsii/pessoa", {
+      method: "GET"
+    })
+      .then((resposta) => resposta.json())
+      .then((dados) => {
+        if (Array.isArray(dados)) {
+          setResponsaveis(dados);
+        }
+      })
+      .catch((erro) => {
+        console.error("Erro ao obter funções:", erro);
+      });
+  }, []);
 
   return (
     <Form
