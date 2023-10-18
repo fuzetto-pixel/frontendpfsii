@@ -7,24 +7,24 @@ export default function FormEvento(props) {
   const [evento, setEvento] = useState(props.evento);
   const [Responsaveis, setResponsaveis] = useState([]);
 
-  function manipularMudanca(e) {
-    const elemForm = e.currentTarget;
-    const id = elemForm.id;
-    const valor = elemForm.value;
-    setEvento({ ...evento, [id]: valor });
-  }
+  const [responsaveisSelecionados, setResponsaveisSelecionados] = useState([]);
 
   function adicionarFuncao() {
     const selectedRoleId = document.getElementById("cpf").value;
     const selectedRole = Responsaveis.find((pessoa) => pessoa.cpf === parseInt(selectedRoleId, 10));
 
-    if (selectedRole && !evento.Responsaveis.some((role) => role.cpf === selectedRole.cpf)) {
-      const novoResponsaveis = [...evento.Responsaveis, { cpf: selectedRole.cpf, nome: selectedRole.nome }];
-      setEvento({
-        ...evento,
-        Responsaveis: novoResponsaveis
-      });
+    if (
+      selectedRole &&
+      !responsaveisSelecionados.some((role) => role.cpf === selectedRole.cpf)
+    ) {
+      const novosResponsaveis = [...responsaveisSelecionados, selectedRole];
+      setResponsaveisSelecionados(novosResponsaveis);
     }
+  }
+
+  function removerFuncao(cpf) {
+    const updatedRoles = responsaveisSelecionados.filter((role) => role.cpf !== cpf);
+    setResponsaveisSelecionados(updatedRoles);
   }
 
   function removerFuncao(cpf) {
@@ -239,39 +239,31 @@ export default function FormEvento(props) {
           </Form.Group>
         </Col>
         <Col className="col-5 mb-4">
-          <div>
-            <label htmlFor="inputEvento" className="form-label">
-              Responsaveis:
-            </label>
-            <Form.Select id="cpf" className="form-control" required onChange={manipularMudanca}>
-              <option value="">Selecione</option>
-              {Responsaveis && Responsaveis.map((pessoa) => (
-                <option key={pessoa.cpf} value={pessoa.cpf}>
-                  {pessoa.nome}
-                </option>
-              ))}
-            </Form.Select>
-            <Button
-              variant="btn btn-outline-primary mt-2"
-              type="button"
-              onClick={adicionarFuncao}
-            >
-              Adicionar Responsavel
-            </Button>
-            <div className="mt-3">
-              {evento.Responsaveis && evento.Responsaveis.map((role) => (
-                <div key={role.cpf}>
-                  {role.nome}{" "}
-                  <Button className="mt-3"
-                    variant="btn btn-outline-danger btn-sm"
-                    type="button"
-                    onClick={() => removerFuncao(role.cpf)}
-                  >
-                    Remover
-                  </Button>
-                </div>
-              ))}
-            </div>
+          <Form.Select id="cpf" className="form-control" required>
+            <option value="">Selecione</option>
+            {Responsaveis.map((pessoa) => (
+              <option key={pessoa.cpf} value={pessoa.cpf}>
+                {pessoa.nome}
+              </option>
+            ))}
+          </Form.Select>
+          <Button variant="btn btn-outline-primary mt-2" type="button" onClick={adicionarFuncao}>
+            Adicionar Responsavel
+          </Button>
+          <div className="mt-3">
+            {responsaveisSelecionados.map((role) => (
+              <div key={role.cpf}>
+                {role.nome}{" "}
+                <Button
+                  className="mt-3"
+                  variant="btn btn-outline-danger btn-sm"
+                  type="button"
+                  onClick={() => removerFuncao(role.cpf)}
+                >
+                  Remover
+                </Button>
+              </div>
+            ))}
           </div>
         </Col>
 
