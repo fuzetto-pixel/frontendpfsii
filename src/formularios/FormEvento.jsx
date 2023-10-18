@@ -16,10 +16,6 @@ export default function FormEvento(props) {
 
   function adicionarResponsaveis() {
     const selectedRoleId = document.getElementById("cpf").value;
-    console.log("selectedRoleId:", selectedRoleId);
-    console.log("Responsaveis:", Responsaveis);
-    console.log("evento:", evento);
-  
     if (Responsaveis && evento && evento.Responsaveis) {
       const selectedRole = Responsaveis.find((pessoa) => pessoa.cpf === selectedRoleId);
       console.log("selectedRole:", selectedRole);
@@ -74,6 +70,8 @@ export default function FormEvento(props) {
         StatusType,
         Descricao,
       };
+
+      console.log('Evento para enviar:', eventoParaEnviar); // Adicione este console log
 
       if (!props.atualizando) {
         fetch("https://129.146.68.51/aluno49-pfsii/evento", {
@@ -170,7 +168,7 @@ export default function FormEvento(props) {
         </Col>
         <Col className="col-4 mb-3">
           <Form.Group>
-            <Form.Label>Evento 10:</Form.Label>
+            <Form.Label>Evento teste:</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ex: Palestra, Workshop..."
