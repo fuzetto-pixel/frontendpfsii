@@ -238,9 +238,9 @@ export default function FormEvento(props) {
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
-        <Col className="col-2 mb-4">
+        <Col className="col-5 mb-4">
           <div>
-            <label htmlFor="inputFuncao" className="form-label">
+            <label htmlFor="inputEvento" className="form-label">
               Responsaveis:
             </label>
             <Form.Select id="cpf" className="form-control" required onChange={manipularMudanca}>
@@ -256,7 +256,7 @@ export default function FormEvento(props) {
               type="button"
               onClick={adicionarFuncao}
             >
-              Adicionar Função
+              Adicionar Responsavel
             </Button>
             <div className="mt-3">
               {evento.Responsaveis.map((role) => (
