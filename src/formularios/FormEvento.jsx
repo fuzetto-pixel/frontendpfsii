@@ -250,7 +250,6 @@ export default function FormEvento(props) {
                   {pessoa.nome}
                 </option>
               ))}
-
             </Form.Select>
             <Button
               variant="btn btn-outline-primary mt-2"
@@ -260,7 +259,7 @@ export default function FormEvento(props) {
               Adicionar Responsavel
             </Button>
             <div className="mt-3">
-              {evento.Responsaveis.map((role) => (
+              {evento.Responsaveis && evento.Responsaveis.map((role) => (
                 <div key={role.cpf}>
                   {role.nome}{" "}
                   <Button className="mt-3"
@@ -275,6 +274,7 @@ export default function FormEvento(props) {
             </div>
           </div>
         </Col>
+
         <Col className="col-3 mb-3">
           <Form.Group>
             <Form.Label>Status:</Form.Label>
