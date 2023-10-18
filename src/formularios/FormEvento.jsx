@@ -25,7 +25,7 @@ export default function FormEvento(props) {
         Responsaveis: [...evento.Responsaveis, { cpf: selectedRole.cpf, nome: selectedRole.nome }]
       });
     }
-  } 
+  }
 
   function removerFuncao(cpf) {
     const updatedRoles = evento.Responsaveis.filter((role) => role.cpf !== cpf);
