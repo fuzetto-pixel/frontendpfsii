@@ -16,14 +16,22 @@ export default function FormEvento(props) {
 
   function adicionarResponsaveis() {
     const selectedRoleId = document.getElementById("cpf").value;
-    const selectedRole = Responsaveis.find((pessoa) => pessoa.cpf === parseInt(selectedRoleId, 10));
+    console.log("selectedRoleId:", selectedRoleId);
+    console.log("Responsaveis:", Responsaveis);
+    console.log("evento:", evento);
   
-    if (selectedRole && evento && evento.Responsaveis && !evento.Responsaveis.some((role) => role.cpf === selectedRole.cpf)) {
-      const novoResponsaveis = [...evento.Responsaveis, { cpf: selectedRole.cpf, nome: selectedRole.cpf }];
-      setEvento({
-        ...evento,
-        Responsaveis: novoResponsaveis
-      });
+    if (Responsaveis && evento && evento.Responsaveis) {
+      const selectedRole = Responsaveis.find((pessoa) => pessoa.cpf === parseInt(selectedRoleId, 10));
+      console.log("selectedRole:", selectedRole);
+  
+      if (selectedRole && !evento.Responsaveis.some((role) => role.cpf === selectedRole.cpf)) {
+        const novoResponsaveis = [...evento.Responsaveis, { cpf: selectedRole.cpf, nome: selectedRole.cpf }];
+        console.log("novoResponsaveis:", novoResponsaveis);
+        setEvento({
+          ...evento,
+          Responsaveis: novoResponsaveis,
+        });
+      }
     }
   }
 
@@ -162,7 +170,7 @@ export default function FormEvento(props) {
         </Col>
         <Col className="col-4 mb-3">
           <Form.Group>
-            <Form.Label>Evento teste:</Form.Label>
+            <Form.Label>Evento 2:</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ex: Palestra, Workshop..."
@@ -240,9 +248,9 @@ export default function FormEvento(props) {
         </Col>
         <Col className="col-5 mb-4">
           <div>
-            <label htmlFor="inputEvento" className="form-label">
+            <Form.Label htmlFor="inputEvento" className="form-label">
               Responsaveis:
-            </label>
+            </Form.Label>
             <Form.Select id="cpf" className="form-control" required onChange={manipularMudanca}>
               <option value="">Selecione</option>
               {Responsaveis && Responsaveis.map((pessoa) => (
