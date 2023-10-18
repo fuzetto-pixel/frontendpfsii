@@ -16,7 +16,7 @@ export default function FormEvento(props) {
 
   function adicionarResponsaveis() {
     const selectedRoleId = document.getElementById("cpf").value;
-    const selectedRole = Responsaveis.find((pessoa) => pessoa.cpf === parseInt(selectedRoleId, 10));
+    const selectedRole = Responsaveis.find((pessoa) => pessoa.cpf === selectedRoleId);
   
     if (selectedRole && !evento.Responsaveis.some((role) => role.cpf === selectedRole.cpf)) {
       const novoResponsaveis = [...evento.Responsaveis, { cpf: selectedRole.cpf, nome: selectedRole.cpf }];
@@ -162,7 +162,7 @@ export default function FormEvento(props) {
         </Col>
         <Col className="col-4 mb-3">
           <Form.Group>
-            <Form.Label>Nome Evento:</Form.Label>
+            <Form.Label>Evento teste:</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ex: Palestra, Workshop..."
