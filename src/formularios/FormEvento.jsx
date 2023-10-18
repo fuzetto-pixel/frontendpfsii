@@ -13,6 +13,26 @@ export default function FormEvento(props) {
     setEvento({ ...evento, [id]: valor });
   }
 
+  function adicionarFuncao() {
+    const selectedRoleId = document.getElementById("cpf").value;
+    const selectedRole = Responsaveis.find((pessoa) => pessoa.cpf === parseInt(selectedRoleId, 10));
+
+    if (selectedRole && !evento.Responsaveis.some((role) => role.cpf === selectedRole.cpf)) {
+      setEvento({
+        ...evento,
+        Responsaveis: [...evento.Responsaveis, { cpf: selectedRole.cpf, nome: selectedRole.nome }]
+      });
+    }
+  } 
+
+  function removerFuncao(cpf) {
+    const updatedRoles = evento.Responsaveis.filter((role) => role.cpf !== cpf);
+    setEvento({
+      ...evento,
+      Responsaveis: updatedRoles
+    });
+  }
+
   function manipulaSubmissao(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -46,7 +66,8 @@ export default function FormEvento(props) {
       };
 
       if (!props.atualizando) {
-        fetch("https://129.146.68.51/aluno49-pfsii/evento", {method: "POST",
+        fetch("https://129.146.68.51/aluno49-pfsii/evento", {
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
@@ -101,9 +122,9 @@ export default function FormEvento(props) {
       className="shadow-lg p-3 mt-4 bg-white rounded;"
       noValidate
       validated={validado}
-      onSubmit={manipulaSubmissao}  
+      onSubmit={manipulaSubmissao}
     >
-      
+
       <Row className="justify-content-center">
         <Col className="d-none ">
           <Form.Group>
@@ -200,45 +221,81 @@ export default function FormEvento(props) {
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
+        <Col className="col-2 mb-4">
+          <div>
+            <label htmlFor="inputFuncao" className="form-label">
+              Responsaveis:
+            </label>
+            <Form.Select id="cpf" className="form-control" required onChange={manipularMudanca}>
+              <option value="">Selecione</option>
+              {Responsaveis.map((pessoa) => (
+                <option key={pessoa.cpf} value={pessoa.cpf}>
+                  {pessoa.nome}
+                </option>
+              ))}
+            </Form.Select>
+            <Button
+              variant="btn btn-outline-primary mt-2"
+              type="button"
+              onClick={adicionarFuncao}
+            >
+              Adicionar Função
+            </Button>
+            <div className="mt-3">
+              {evento.Responsaveis.map((role) => (
+                <div key={role.cpf}>
+                  {role.nome}{" "}
+                  <Button className="mt-3"
+                    variant="btn btn-outline-danger btn-sm"
+                    type="button"
+                    onClick={() => removerFuncao(role.cpf)}
+                  >
+                    Remover
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Col>
         <Col className="col-3 mb-3">
-        <Form.Group>
-          <Form.Label>Status:</Form.Label>
-          <Form.Control
-            as="select"
-            value={evento.StatusType}
-            id="StatusType"
-            onChange={manipularMudanca}
-            required
-          >
-            <option value="">Selecione o status...</option>
-            <option value="Confirmado">Confirmado</option>
-            <option value="Pendente">Pendente</option>
-            <option value="Cancelado">Cancelado</option>
-          </Form.Control>
-          <Form.Control.Feedback type="invalid">
-            Selecione o status do evento!
-          </Form.Control.Feedback>
-        </Form.Group>
-      </Col>
-        
-          <Col className="mt-5 col-11">
-            <InputGroup className="descricao">
-              <InputGroup.Text>Descrição</InputGroup.Text>
-              <Form.Control
-                required
-                value={evento.Descricao}
-                onChange={manipularMudanca}
-                id="Descricao"
-                as="textarea"
-                placeholder="Insira aqui as descrições do evento cadastrado..."
-                style={{ height: '100px' }}
-                
-              />
-              <Form.Control.Feedback>Ok !</Form.Control.Feedback>
-              <Form.Control.Feedback type="invalid">Por favor Insira uma Descrição!</Form.Control.Feedback>
-            </InputGroup>
-          </Col>
-        
+          <Form.Group>
+            <Form.Label>Status:</Form.Label>
+            <Form.Control
+              as="select"
+              value={evento.StatusType}
+              id="StatusType"
+              onChange={manipularMudanca}
+              required
+            >
+              <option value="">Selecione o status...</option>
+              <option value="Confirmado">Confirmado</option>
+              <option value="Pendente">Pendente</option>
+              <option value="Cancelado">Cancelado</option>
+            </Form.Control>
+            <Form.Control.Feedback type="invalid">
+              Selecione o status do evento!
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Col>
+
+        <Col className="mt-5 col-11">
+          <InputGroup className="descricao">
+            <InputGroup.Text>Descrição</InputGroup.Text>
+            <Form.Control
+              required
+              value={evento.Descricao}
+              onChange={manipularMudanca}
+              id="Descricao"
+              as="textarea"
+              placeholder="Insira aqui as descrições do evento cadastrado..."
+              style={{ height: '100px' }}
+
+            />
+            <Form.Control.Feedback>Ok !</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">Por favor Insira uma Descrição!</Form.Control.Feedback>
+          </InputGroup>
+        </Col>
+
         <div className="d-flex justify-content-end my-3">
           <Button
             style={{ marginRight: "5px" }}
@@ -254,7 +311,7 @@ export default function FormEvento(props) {
           <Button className="mt-5" type="submit" variant="btn btn-outline-success">
             {props.atualizando ? "Atualizar" : "Cadastrar"}
           </Button>{" "}
-          
+
         </div>
       </Row>
     </Form>

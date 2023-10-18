@@ -5,12 +5,14 @@ import { useState, useEffect } from "react";
 import { Alert, Container } from "react-bootstrap";
 
 export default function TelaCadastroEvento(props) {
+  // const [eventosEPessoas, setEventosEPessoas] = useState([]);
   const [exibirTabela, setExibirTabela] = useState(true);
   const [eventos, setEvento] = useState([]);
   const [modoEdicao, setModoEdicao] = useState(false);
   //editar
   const [atualizando, setAtualizando] = useState(false);
   const [EventoEmEdicao, setEventoEmEdicao] = useState({
+    
 
     idEvento: 0,
     nomeEvento: "",
@@ -67,6 +69,22 @@ export default function TelaCadastroEvento(props) {
         alert("Erro ao obter eventos: " + erro.message);
       });
   }, []);
+
+  // const buscarResponsaveis = () => {
+  //   fetch("https://129.146.68.51/aluno14-pfsii/responsavel_evento", {
+  //     method: "GET",
+  //   })
+  //     .then((resposta) => resposta.json())
+  //     .then((dados) => {
+  //       if (Array.isArray(dados)) {
+  //         setEventosEPessoas(dados);
+  //         setExibirTabela(false);
+  //       }
+  //     })
+  //     .catch((erro) => {
+  //       console.error("Erro ao obter as funções e pessoas:", erro);
+  //     });
+  // };
 
   return (
     <Pagina>
