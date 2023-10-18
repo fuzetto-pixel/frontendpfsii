@@ -165,7 +165,7 @@ export default function FormEvento(props) {
         </Col>
         <Col className="col-4 mb-3">
           <Form.Group>
-            <Form.Label>Evento 77:</Form.Label>
+            <Form.Label>Evento 10:</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ex: Palestra, Workshop..."
