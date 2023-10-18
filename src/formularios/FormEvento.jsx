@@ -4,7 +4,7 @@ import moment from "moment";
 
 export default function FormEvento(props) {
   const [validado, setValidado] = useState(false);
-  const [evento, setEvento] = useState(props.evento);
+  const [evento, setEvento] = useState({ ...props.evento, Responsaveis: [] });
   const [Responsaveis, setResponsaveis] = useState([]);
 
   function manipularMudanca(e) {
