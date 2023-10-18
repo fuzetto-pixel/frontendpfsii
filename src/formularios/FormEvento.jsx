@@ -19,9 +19,10 @@ export default function FormEvento(props) {
     const selectedRole = Responsaveis.find((pessoa) => pessoa.cpf === parseInt(selectedRoleId, 10));
 
     if (selectedRole && !evento.Responsaveis.some((role) => role.cpf === selectedRole.cpf)) {
+      const novoResponsaveis = [...evento.Responsaveis, { cpf: selectedRole.cpf, nome: selectedRole.nome }];
       setEvento({
         ...evento,
-        Responsaveis: [...evento.Responsaveis, { cpf: selectedRole.cpf, nome: selectedRole.nome }]
+        Responsaveis: novoResponsaveis
       });
     }
   }
