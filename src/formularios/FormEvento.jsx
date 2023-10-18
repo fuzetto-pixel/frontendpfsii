@@ -15,11 +15,10 @@ export default function FormEvento(props) {
   }
 
   function adicionarResponsaveis() {
-    console.log("Adicionar Responsável acionado!");
     const selectedRoleId = document.getElementById("cpf").value;
-    const selectedRole = Responsaveis.find((pessoa) => pessoa.cpf === selectedRoleId);
-  
-    if (selectedRole && !evento.Responsaveis.some((role) => role.cpf === selectedRole.cpf)) {
+    const selectedRole = Responsaveis.find((pessoa) => pessoa.cpf === parseInt(selectedRoleId, 10));
+
+    if (selectedRole && evento.Responsaveis && !evento.Responsaveis.some((role) => role.cpf === selectedRole.cpf)) {
       const novoResponsaveis = [...evento.Responsaveis, { cpf: selectedRole.cpf, nome: selectedRole.cpf }];
       setEvento({
         ...evento,
