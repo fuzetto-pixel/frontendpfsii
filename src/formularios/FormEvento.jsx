@@ -17,8 +17,8 @@ export default function FormEvento(props) {
   function adicionarResponsaveis() {
     const selectedRoleId = document.getElementById("cpf").value;
     const selectedRole = Responsaveis.find((pessoa) => pessoa.cpf === parseInt(selectedRoleId, 10));
-
-    if (selectedRole && evento.Responsaveis && !evento.Responsaveis.some((role) => role.cpf === selectedRole.cpf)) {
+  
+    if (selectedRole && evento && evento.Responsaveis && !evento.Responsaveis.some((role) => role.cpf === selectedRole.cpf)) {
       const novoResponsaveis = [...evento.Responsaveis, { cpf: selectedRole.cpf, nome: selectedRole.cpf }];
       setEvento({
         ...evento,
@@ -120,7 +120,7 @@ export default function FormEvento(props) {
   }
 
   useEffect(() => {
-    fetch("https://129.146.68.51/aluno49-pfsii/evento", {
+    fetch("https://129.146.68.51/aluno49-pfsii/pessoa", {
       method: "GET"
     })
       .then((resposta) => resposta.json())
@@ -162,7 +162,7 @@ export default function FormEvento(props) {
         </Col>
         <Col className="col-4 mb-3">
           <Form.Group>
-            <Form.Label>Evento1:</Form.Label>
+            <Form.Label>Evento:</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ex: Palestra, Workshop..."
