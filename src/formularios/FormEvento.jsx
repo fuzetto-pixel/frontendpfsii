@@ -21,11 +21,11 @@ export default function FormEvento(props) {
     console.log("evento:", evento);
   
     if (Responsaveis && evento && evento.Responsaveis) {
-      const selectedRole = Responsaveis.find((pessoa) => pessoa.cpf === parseInt(selectedRoleId, 10));
+      const selectedRole = Responsaveis.find((pessoa) => pessoa.cpf === selectedRoleId);
       console.log("selectedRole:", selectedRole);
   
       if (selectedRole && !evento.Responsaveis.some((role) => role.cpf === selectedRole.cpf)) {
-        const novoResponsaveis = [...evento.Responsaveis, { cpf: selectedRole.cpf, nome: selectedRole.cpf }];
+        const novoResponsaveis = [...(evento.Responsaveis || []), selectedRole];
         console.log("novoResponsaveis:", novoResponsaveis);
         setEvento({
           ...evento,
@@ -34,7 +34,7 @@ export default function FormEvento(props) {
       }
     }
   }
-
+  
   function removerResponsaveis(cpf) {
     const updatedRoles = evento.Responsaveis.filter((role) => role.cpf !== cpf);
     setEvento({
@@ -170,7 +170,7 @@ export default function FormEvento(props) {
         </Col>
         <Col className="col-4 mb-3">
           <Form.Group>
-            <Form.Label>Evento 2:</Form.Label>
+            <Form.Label>Evento 7:</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ex: Palestra, Workshop..."
