@@ -245,11 +245,12 @@ export default function FormEvento(props) {
             </label>
             <Form.Select id="cpf" className="form-control" required onChange={manipularMudanca}>
               <option value="">Selecione</option>
-              {Responsaveis.map((pessoa) => (
+              {Responsaveis && Responsaveis.map((pessoa) => (
                 <option key={pessoa.cpf} value={pessoa.cpf}>
                   {pessoa.nome}
                 </option>
               ))}
+
             </Form.Select>
             <Button
               variant="btn btn-outline-primary mt-2"
