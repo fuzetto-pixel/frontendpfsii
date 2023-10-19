@@ -197,7 +197,7 @@ export default function FormEvento(props) {
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
-        <Col className="col-2 mb-3">
+        <Col className="col-3 mb-3">
           <Form.Group>
             <Form.Label>Data do evento:</Form.Label>
             <Form.Control
@@ -227,7 +227,7 @@ export default function FormEvento(props) {
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
-        <Col className="col-4 mb-3">
+        <Col className="col-3 mb-3">
           <Form.Group>
             <Form.Label>Localização:</Form.Label>
             <Form.Control
@@ -246,7 +246,7 @@ export default function FormEvento(props) {
         <Col className="col-3 mb-4">
           <div>
             <Form.Label htmlFor="inputEvento" className="form-label">
-              Responsaveis:
+              Responsaveis pelo evento:
             </Form.Label>
             <Form.Select id="cpf" className="form-control" required onChange={manipularMudanca}>
               <option value="">Selecione</option>

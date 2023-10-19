@@ -11,6 +11,8 @@ export default function TabelaEvento(props) {
   const [eventosCadastrados, setEventosCadastrados] = useState([]); // Estado para armazenar a lista de eventos cadastrados
   const [mostrarCalendario, setMostrarCalendario] = useState(false); // Estado para controlar a exibição do calendário
 
+  const [ResponsavelEventos, setResponsavelEventos] = useState([]);
+
   useEffect(() => {
     fetch("https://129.146.68.51/aluno49-pfsii/evento", { method: "GET" })
       .then((resposta) => resposta.json())
@@ -175,8 +177,25 @@ export default function TabelaEvento(props) {
     usePagination // Configuração do hook usePagination para a tabela paginada
   );
 
+  const buscarResponsavelEventos = () => {
+    fetch("https://129.146.68.51/aluno49-pfsii/responsavel_evento", {
+      method: "GET",
+    })
+      .then((resposta) => resposta.json())
+      .then((dados) => {
+        if (Array.isArray(dados)) {
+          setResponsavelEventos(dados);
+          setExibirTabela(false);
+        }
+      })
+      .catch((erro) => {
+        console.error("Erro ao obter as responsaveis:", erro);
+      });
+  };
+
 
   return (
+
     <Container>
       <Container>
         <Row className="col-4">
@@ -224,7 +243,7 @@ export default function TabelaEvento(props) {
       <div className="d-flex justify-content-center align-items-center">
         <Pagination>
           <Pagination.Prev onClick={previousPage} disabled={!canPreviousPage} />
-          {/* Mapeia as opções de páginas disponíveis para exibir os números de página */}  
+          {/* Mapeia as opções de páginas disponíveis para exibir os números de página */}
           {pageOptions.map((pageNumber) => (
             <Pagination.Item // Renderiza cada número de página como um item da paginação
               key={pageNumber}
@@ -241,6 +260,20 @@ export default function TabelaEvento(props) {
       {props.listaEvento && props.listaEvento.length === 0 && (
         <p className="text-center my-4">Nenhum evento cadastrado.</p>
       )}
+      <div className="text-center">
+        <Button variant="success" onClick={buscarResponsavelEventos}>
+          Responsaveis dos eventos
+        </Button>
+      </div>
+
+      <div>
+        <h3>Reponsaveis</h3>
+        <ul>
+          {ResponsavelEventos.map((item) => (
+            <li key={item.id}>{item.cpf} - {item.idEvento}</li>
+          ))}
+        </ul>
+      </div>
 
       {mostrarCalendario && (
         <div>
