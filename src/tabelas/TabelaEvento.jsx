@@ -11,8 +11,18 @@ export default function TabelaEvento(props) {
   const [eventosCadastrados, setEventosCadastrados] = useState([]); // Estado para armazenar a lista de eventos cadastrados
   const [mostrarCalendario, setMostrarCalendario] = useState(false); // Estado para controlar a exibição do calendário
 
-  const [ResponsavelEventos, setResponsavelEventos] = useState([]);
-  const [, setExibirTabela] = useState(false);
+  const visualizarResponsaveis = (idEvento) => {
+    fetch(`https://129.146.68.51/aluno49-pfsii/responsavel_evento/${idEvento}`, { method: "GET" })
+      .then((resposta) => resposta.json())
+      .then((dados) => {
+        // Lógica para lidar com os responsáveis
+        console.log(dados); // Exemplo de manipulação da resposta do servidor
+        // Implemente a lógica para exibir os responsáveis em um formato desejado
+      })
+      .catch((erro) => {
+        alert("Erro ao obter responsáveis: " + erro.message);
+      });
+  };
 
   useEffect(() => {
     fetch("https://129.146.68.51/aluno49-pfsii/evento", { method: "GET" })
@@ -151,7 +161,21 @@ export default function TabelaEvento(props) {
             </Button>
           </div>
         ),
+        Header: "Veja os Responsáveis",
+        Cell: ({ row }) => (
+          <div>
+            <Button
+              onClick={() => visualizarResponsaveis(row.original.idEvento)}
+              title="Veja os Responsáveis"
+              variant="btn btn-outline-secondary"
+            >
+              Veja os Responsáveis
+            </Button>
+          </div>
+        ),
       },
+
+
     ],
     [props.editarEvento, props.excluirEvento]
   );
@@ -178,25 +202,8 @@ export default function TabelaEvento(props) {
     usePagination // Configuração do hook usePagination para a tabela paginada
   );
 
-  const buscarResponsavelEventos = () => {
-    fetch("https://129.146.68.51/aluno49-pfsii/responsavel_evento", {
-      method: "GET",
-    })
-      .then((resposta) => resposta.json())
-      .then((dados) => {
-        if (Array.isArray(dados)) {
-          setResponsavelEventos(dados);
-          setExibirTabela(false);
-        }
-      })
-      .catch((erro) => {
-        console.error("Erro ao obter as responsaveis:", erro);
-      });
-  };
-
 
   return (
-
     <Container>
       <Container>
         <Row className="col-4">
@@ -261,18 +268,6 @@ export default function TabelaEvento(props) {
       {props.listaEvento && props.listaEvento.length === 0 && (
         <p className="text-center my-4">Nenhum evento cadastrado.</p>
       )}
-      <div>
-      <div className="text-center">
-        <Button variant="success" onClick={buscarResponsavelEventos}>
-          Responsaveis dos eventos
-        </Button>
-      </div>
-        <ul>
-          {ResponsavelEventos.map((item) => (
-            <li key={item.id}>{item.cpf} - {item.idEvento}</li>
-          ))}
-        </ul>
-      </div>
 
       {mostrarCalendario && (
         <div>
