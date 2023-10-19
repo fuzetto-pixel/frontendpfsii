@@ -314,7 +314,6 @@ export default function FormEvento(props) {
               as="textarea"
               placeholder="Insira aqui as descrições do evento cadastrado..."
               style={{ height: '100px' }}
-
             />
             <Form.Control.Feedback>Ok !</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">Por favor Insira uma Descrição!</Form.Control.Feedback>
