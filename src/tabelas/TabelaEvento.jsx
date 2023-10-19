@@ -11,18 +11,6 @@ export default function TabelaEvento(props) {
   const [eventosCadastrados, setEventosCadastrados] = useState([]); // Estado para armazenar a lista de eventos cadastrados
   const [mostrarCalendario, setMostrarCalendario] = useState(false); // Estado para controlar a exibição do calendário
 
-  const visualizarResponsaveis = (idEvento) => {
-    console.log("ID do Evento:", idEvento); // Adicione este console.log para verificar o ID do evento
-    fetch(`https://129.146.68.51/aluno49-pfsii/responsavel_evento/${idEvento}`, { method: "GET" })
-      .then((resposta) => resposta.text())
-      .then((dados) => {
-        console.log(dados); // Verifique o que está sendo retornado aqui
-      })
-      .catch((erro) => {
-        alert("Erro ao obter responsáveis: " + erro.message);
-      });
-  };
-
   useEffect(() => {
     fetch("https://129.146.68.51/aluno49-pfsii/evento", { method: "GET" })
       .then((resposta) => resposta.json())
@@ -160,21 +148,7 @@ export default function TabelaEvento(props) {
             </Button>
           </div>
         ),
-        Header: "Veja os Responsáveis",
-        Cell: ({ row }) => (
-          <div>
-            <Button
-              onClick={() => visualizarResponsaveis(row.original.idEvento)}
-              title="Veja os Responsáveis"
-              variant="btn btn-outline-secondary"
-            >
-              Veja os Responsáveis
-            </Button>
-          </div>
-        ),
       },
-
-
     ],
     [props.editarEvento, props.excluirEvento]
   );
@@ -250,7 +224,7 @@ export default function TabelaEvento(props) {
       <div className="d-flex justify-content-center align-items-center">
         <Pagination>
           <Pagination.Prev onClick={previousPage} disabled={!canPreviousPage} />
-          {/* Mapeia as opções de páginas disponíveis para exibir os números de página */}
+          {/* Mapeia as opções de páginas disponíveis para exibir os números de página */}  
           {pageOptions.map((pageNumber) => (
             <Pagination.Item // Renderiza cada número de página como um item da paginação
               key={pageNumber}
