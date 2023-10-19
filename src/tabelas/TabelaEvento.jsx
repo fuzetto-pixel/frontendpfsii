@@ -13,11 +13,9 @@ export default function TabelaEvento(props) {
 
   const visualizarResponsaveis = (idEvento) => {
     fetch(`https://129.146.68.51/aluno49-pfsii/responsavel_evento/${idEvento}`, { method: "GET" })
-      .then((resposta) => resposta.json())
+      .then((resposta) => resposta.text())
       .then((dados) => {
-        // Lógica para lidar com os responsáveis
-        console.log(dados); // Exemplo de manipulação da resposta do servidor
-        // Implemente a lógica para exibir os responsáveis em um formato desejado
+        console.log(dados); // Verifique o que está sendo retornado aqui
       })
       .catch((erro) => {
         alert("Erro ao obter responsáveis: " + erro.message);
