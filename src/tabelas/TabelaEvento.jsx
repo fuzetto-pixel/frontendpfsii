@@ -261,14 +261,12 @@ export default function TabelaEvento(props) {
       {props.listaEvento && props.listaEvento.length === 0 && (
         <p className="text-center my-4">Nenhum evento cadastrado.</p>
       )}
+      <div>
       <div className="text-center">
         <Button variant="success" onClick={buscarResponsavelEventos}>
           Responsaveis dos eventos
         </Button>
       </div>
-
-      <div>
-        <h3>Reponsaveis</h3>
         <ul>
           {ResponsavelEventos.map((item) => (
             <li key={item.id}>{item.cpf} - {item.idEvento}</li>
