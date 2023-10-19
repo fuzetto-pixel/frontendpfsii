@@ -87,7 +87,7 @@ export default function FormEvento(props) {
               let novaLista = [...props.listaEvento, eventoParaEnviar];
               props.setEvento(novaLista);
               props.exibirTabela(true);
-              window.location.reload();
+              // window.location.reload();
             }
             window.alert(dados.mensagem);
           })
@@ -167,7 +167,7 @@ export default function FormEvento(props) {
         </Col>
         <Col className="col-4 mb-3">
           <Form.Group>
-            <Form.Label>Evento teste1:</Form.Label>
+            <Form.Label>Evento testando:</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ex: Palestra, Workshop..."
