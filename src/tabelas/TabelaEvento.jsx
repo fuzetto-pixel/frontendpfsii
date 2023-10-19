@@ -14,7 +14,6 @@ export default function TabelaEvento(props) {
   const [ResponsavelEventos, setResponsavelEventos] = useState([]);
   const [, setExibirTabela] = useState(false);
 
-
   useEffect(() => {
     fetch("https://129.146.68.51/aluno49-pfsii/evento", { method: "GET" })
       .then((resposta) => resposta.json())
