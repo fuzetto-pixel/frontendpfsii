@@ -53,6 +53,7 @@ export default function FormEvento(props) {
         Localizacao,
         StatusType,
         Descricao,
+        Responsaveis,
       } = evento;
 
       const dataFormatada = moment(DataEvento, "YYYY-MM-DD").format("YYYY-MM-DDTHH:mm:ss");
@@ -67,6 +68,7 @@ export default function FormEvento(props) {
         Localizacao,
         StatusType,
         Descricao,
+        Responsaveis,
       };
 
 
@@ -165,7 +167,7 @@ export default function FormEvento(props) {
         </Col>
         <Col className="col-4 mb-3">
           <Form.Group>
-            <Form.Label>Evento 10:</Form.Label>
+            <Form.Label>Evento teste1:</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ex: Palestra, Workshop..."
@@ -250,7 +252,7 @@ export default function FormEvento(props) {
               <option value="">Selecione</option>
               {Responsaveis && Responsaveis.map((pessoa) => (
                 <option key={pessoa.cpf} value={pessoa.cpf}>
-                  {pessoa.cpf}
+                  {pessoa.nome}
                 </option>
               ))}
             </Form.Select>
