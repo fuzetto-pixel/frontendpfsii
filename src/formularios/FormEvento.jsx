@@ -18,7 +18,7 @@ export default function FormEvento(props) {
     const selectedRoleId = document.getElementById("cpf").value;
     if (Responsaveis && evento && evento.Responsaveis) {
       const selectedRole = Responsaveis.find((pessoa) => pessoa.cpf === selectedRoleId);
-
+  
       if (selectedRole && !evento.Responsaveis.some((role) => role.cpf === selectedRole.cpf)) {
         const novoResponsaveis = [...(evento.Responsaveis || []), selectedRole];
         setEvento({
@@ -28,7 +28,7 @@ export default function FormEvento(props) {
       }
     }
   }
-
+  
   function removerResponsaveis(cpf) {
     const updatedRoles = evento.Responsaveis.filter((role) => role.cpf !== cpf);
     setEvento({
@@ -71,6 +71,7 @@ export default function FormEvento(props) {
         Responsaveis,
       };
 
+
       if (!props.atualizando) {
         fetch("https://129.146.68.51/aluno49-pfsii/evento", {
           method: "POST",
@@ -79,16 +80,17 @@ export default function FormEvento(props) {
           },
           body: JSON.stringify(eventoParaEnviar),
         })
-          .then((resposta) => resposta.json())
-          .then((dados) => {
-            if (dados.status) {
-              props.setModoEdicao(false);
-              let novaLista = [...props.listaEvento, eventoParaEnviar];
-              props.setEvento(novaLista);
-              props.exibirTabela(true);
-            }
-            window.alert(dados.mensagem);
-          })
+        .then((resposta) => resposta.json())
+        .then((dados) => {
+          if (dados.status) {
+            props.setModoEdicao(false);
+            const novoEventoComID = { ...eventoParaEnviar, idEvento: dados.id }; // Usar o ID retornado do servidor
+            let novaLista = [...props.listaEvento, novoEventoComID];
+            props.setEvento(novaLista);
+            props.exibirTabela(true);
+          }
+          window.alert(dados.mensagem);
+        })
           .catch((erro) => {
             window.alert("Erro ao executar a requisição: " + erro.message);
           });
@@ -104,7 +106,7 @@ export default function FormEvento(props) {
           .then((dados) => {
             if (dados.status) {
               props.setModoEdicao(false);
-              let novaLista = [...props.listaEvento.filter(item => item.idEvento !== evento.idEvento), eventoParaEnviar];
+              let novaLista = [...props.listaEvento, eventoParaEnviar];
               props.setEvento(novaLista);
               props.exibirTabela(true);
               setEvento(props.evento);
@@ -165,7 +167,7 @@ export default function FormEvento(props) {
         </Col>
         <Col className="col-4 mb-3">
           <Form.Group>
-            <Form.Label>Nome evento:</Form.Label>
+            <Form.Label>Nome evento1010:</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ex: Palestra, Workshop..."
